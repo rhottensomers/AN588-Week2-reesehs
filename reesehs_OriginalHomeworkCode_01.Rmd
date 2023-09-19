@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Challenge 1
 
-I attempted to extract every third element but I found some trouble along the way.  
+I attempt to extract every third element but I found some trouble along the way.  
 However, Jimmy helped me at the begining of class(thanks Jimmy!) by using this code:  
 
 library(stringr)  
