@@ -1,0 +1,107 @@
+---
+title: "reesehs_OriginalHomeworkCode_01"
+author: "Reese Hotten-Somers"
+date: "2023-09-17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Peer Commentary
+- The first thing I noticed is that in Challenge 2, I immediately noticed that  you put the rows and columns you were subsetting into a vector with c() and that made it so efficient.
+- I would just add to challenge 2 the third part which is "Given the matrix, m, extract the elements from row 2, column 2 to row 6, column 9 and assign them to the variable x".
+-In Challenge 5 your use of df$X2 and df$X3 to extract the 2nd and 3rd column to change their class was really great. I used [] notation to subset and it felt really clunky. If you want to save those changes to the data frame so the class of the column changed permanently, you can try df <- as.logical(df$X2).
+-I also appreciate your use of hash comments in your code - it made it super easy for me to locate what you were doing and why.
+
+## Challenge 1
+
+I attempted to extract every third element but I found some trouble along the way.  
+However, Jimmy helped me at the begining of class(thanks Jimmy!) by using this code:  
+
+library(stringr)  
+jimmy_ulysses <- gsub("[[:punct:]]", replacement = "", ulysses)  
+jimmy_ulysses <- unliststr_split(jimmy_ulysses, pattern = " ")  
+unlist(jimmy_ulysses)[seq(from = 1, to = 22, by = 3)]  
+
+Using Jimmy's code I was able to redo my code and figure out the challenge:  
+```{r, reesecode}
+library(stringr)
+ulysses <- "Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed."
+reese_ulysses<- gsub("[[:punct:]]", replacement = "", ulysses)
+#this takes out all punctuation and replaces it with a space
+reese_ulysses
+reese_ulysses<-str_split(reese_ulysses, " ")
+#this separates the string and puts an extra space between each word
+reese_ulysses
+reese_ulysses<-unlist(reese_ulysses)[seq(from=1, to= 22, by= 3)]
+#makes string into vector again and generates sequence from vector using every 3 words
+reese_ulysses
+```
+
+
+## Challenge 2
+```{r, challenge 2}
+m <- matrix(data = 1:80, nrow = 8, ncol = 10, byrow = FALSE)
+m
+#creates matrix
+x<-m[,c(2,3,6)]
+x
+#shows columns 2, 3, and 6
+x<-m[c(6,8),]
+x
+#shows rows 6 and 8
+```
+
+
+
+## Challenge 3
+```{r, array challenge}
+a<- array(data = 400:1, dim= c(5,5,4,4))
+#creates array with numbers decending from 400-1 with they dimensions of 5,5,4,4
+a 
+a[1,1,1,2]
+#returns data at that point in the array
+a[2,3,2,]
+#returns row
+a[1:5,1:5,3,3]
+#returns columns/rows 1-5 of the array 3,3
+```
+
+
+## Challenge 4:
+```{r, primate list}
+Platyrrhini<- c("Cebidae", "Atelidae", "Pitheciidae")
+Catarrhini<- c("Cercopithecidae", "Hylobatidae", "Hominidae")
+Tarsioidea <-c("Tarsiidae")
+Anthropoidea <- list(Catarrhini, Platyrrhini)
+names(Anthropoidea)<- list("Catarrhini", "Platyrrhini")
+Haplorhini<- list(Anthropoidea, Tarsioidea)
+names(Haplorhini)<- list("Anthropoidea", "Tarsioidea")
+Lemuroidea <- c("Cheirogaleidae", "Lepilemuridae", "Indriidae", "Lemuridae",
+    "Daubentoniidae")
+Lorisoidea <- c("Lorisidae", "Galagidae")
+Strepsirhini <- list(Lemuroidea, Lorisoidea)
+names(Strepsirhini) <- list("Lemuroidea", "Lorisoidea")
+Primates<- list(Haplorhini, Strepsirhini)
+names(Primates)<- list("Haplorhini", "Strepsirhini")
+Primates
+#this creates a organized list of primate taxonomy with subsets 
+```
+
+
+
+## Challenge 5:
+```{r, matrix manipulation }
+d1<- c(3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2) 
+#data for matrix
+m3<- matrix(d1, nrow=5, ncol=3, byrow=TRUE) #creates matrix with 5 rows/3 colums using d1 as data
+m3
+df<- data.frame(m3) #converts matrix into data frame do it can be manipulated differently
+df
+as.logical(df$X2) #makes column 2 logical valued
+df
+as.factor(df$X3) #makes colum 3 factor valued
+str(df)
+```
