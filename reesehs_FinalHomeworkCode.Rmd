@@ -26,13 +26,15 @@ jimmy_ulysses <- gsub("[[:punct:]]", replacement = "", ulysses)
 jimmy_ulysses <- unliststr_split(jimmy_ulysses, pattern = " ")  
 unlist(jimmy_ulysses)[seq(from = 1, to = 22, by = 3)]  
 
-Using Jimmy's code I was able to redo my code and figure out the challenge:  
+Using Jimmy's code(above) I was able to redo my code and figure out the challenge:  
 ```{r, reesecode}
 library(stringr)
 ulysses <- "Stately, plump Buck Mulligan came from the stairhead, bearing a bowl of lather on which a mirror and a razor lay crossed."
+#creates string 
 reese_ulysses<- gsub("[[:punct:]]", replacement = "", ulysses)
 #this takes out all punctuation and replaces it with a space
 reese_ulysses
+#displays what reese_ulysses is so I can see how it had been changed
 reese_ulysses<-str_split(reese_ulysses, " ")
 #this separates the string and puts an extra space between each word
 reese_ulysses
@@ -45,14 +47,18 @@ reese_ulysses
 ## Challenge 2
 ```{r, challenge 2}
 m <- matrix(data = 1:80, nrow = 8, ncol = 10, byrow = FALSE)
-m
 #creates matrix
+m
 x<-m[,c(2,3,6)]
-x
 #shows columns 2, 3, and 6
-x<-m[c(6,8),]
 x
+x<-m[c(6,8),]
 #shows rows 6 and 8
+x
+x <- m[2:6,2:9]
+#creates subset of matrix m extracting numbers from row 2, column 2 in the matrix to row 6, column 9.
+#I initally forgot to include this in my Rmd file, but Nicole graciously reminded me to do it! Thank you :))
+x
 ```
 
 
@@ -64,20 +70,26 @@ a<- array(data = 400:1, dim= c(5,5,4,4))
 a 
 a[1,1,1,2]
 #returns data at that point in the array
+a
 a[2,3,2,]
 #returns row
+a
 a[1:5,1:5,3,3]
 #returns columns/rows 1-5 of the array 3,3
+a
 ```
 
 
 ## Challenge 4:
 ```{r, primate list}
 Platyrrhini<- c("Cebidae", "Atelidae", "Pitheciidae")
+#creates vector containing the list of strings and assigns it to the variable Platyrrhini(this is repeated many times for different taxonomies)
 Catarrhini<- c("Cercopithecidae", "Hylobatidae", "Hominidae")
 Tarsioidea <-c("Tarsiidae")
 Anthropoidea <- list(Catarrhini, Platyrrhini)
+#creates a list out of the previously created variables and assigns the list to another variable(Anthropoidea)
 names(Anthropoidea)<- list("Catarrhini", "Platyrrhini")
+#This then creates a list of strings and assigns Athropoidea as a name as the variable to the list of strings(process repeated more below) 
 Haplorhini<- list(Anthropoidea, Tarsioidea)
 names(Haplorhini)<- list("Anthropoidea", "Tarsioidea")
 Lemuroidea <- c("Cheirogaleidae", "Lepilemuridae", "Indriidae", "Lemuridae",
@@ -101,8 +113,14 @@ m3<- matrix(d1, nrow=5, ncol=3, byrow=TRUE) #creates matrix with 5 rows/3 colums
 m3
 df<- data.frame(m3) #converts matrix into data frame do it can be manipulated differently
 df
-as.logical(df$X2) #makes column 2 logical valued
+as.logical(df$X2) #makes column 2 logical valued and saves it to a new data frame
 df
-as.factor(df$X3) #makes colum 3 factor valued
-str(df)
+as.factor(df$X3) #makes column 3 factor valued
+str(df) #reviews the structure of the data frame, I am able to see how the second column is not logical values using 0 and 1(for false and true of course) and column 3 is assigned levels(factor values)
 ```
+
+## Peer Commentary
+- The first thing I noticed is that in Challenge 2, I immediately noticed that  you put the rows and columns you were subsetting into a vector with c() and that made it so efficient.
+- I would just add to challenge 2 the third part which is "Given the matrix, m, extract the elements from row 2, column 2 to row 6, column 9 and assign them to the variable x".
+-In Challenge 5 your use of df$X2 and df$X3 to extract the 2nd and 3rd column to change their class was really great. I used [] notation to subset and it felt really clunky. If you want to save those changes to the data frame so the class of the column changed permanently, you can try df <- as.logical(df$X2).
+-I also appreciate your use of hash comments in your code - it made it super easy for me to locate what you were doing and why.
