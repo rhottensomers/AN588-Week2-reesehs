@@ -15,6 +15,33 @@ output:
 ```{r setup, include=FALSE}
 library(rmdformats)
 ```
+## Reflections:
+
+### Challenges Faced:
+
+1. The main challenge that I faced was challenge 1. I was hard to understand how to use the split_str function, even when I looked up the help document. On my own I was able to understand how to split the string into individual letters or even words but it required the help of Jimmy to finally understand how to not get an out of bounds error. I then took Jimmy's code(which did not compile or run) and simplified it into a way that I understood. 
+
+2. For challenge 2 I struggled with the last part, where you have to take the data from matrix point 2,2 to 6,9. For some reason all the commas and brackets and parentheses became a lot and I ended up having to trial and error my way through to the answer. In the end, it was a good excersise in troubleshooting and figuring out how to subset corrected. 
+
+3. The final challenge I faced was trying to figure out how to select certain columns in a data frame in challenge 5. I tried to subset it, but it did ever quite work but then I was able to look into the as.factor function and in one of the examples it used the $ sign as a connector. I then looked at the structure of the data frame and I learned that the column names used X(instert number) notation so I was able to select the correct column. 
+
+4. Side note: trying to find how to make the downcute theme(for the YAML) work was really hard because Sofia and I could not find the instructions!
+
+### Nicole's Peery Commentary:
+
+- The first thing I noticed is that in Challenge 2, I immediately noticed that  you put the rows and columns you were subsetting into a vector with c() and that made it so efficient.
+- I would just add to challenge 2 the third part which is "Given the matrix, m, extract the elements from row 2, column 2 to row 6, column 9 and assign them to the variable x".
+-In Challenge 5 your use of df$X2 and df$X3 to extract the 2nd and 3rd column to change their class was really great. I used [] notation to subset and it felt really clunky. If you want to save those changes to the data frame so the class of the column changed permanently, you can try df <- as.logical(df$X2).
+-I also appreciate your use of hash comments in your code - it made it super easy for me to locate what you were doing and why.
+
+### Peer Commentary, How it helped:
+
+1. Peer commentary from Nicole first of all reminded me to finish challenge 2! I had inadvertently skipped the last part of the challenge and Nicole kindly reminded me to finish it. 
+
+2. In one of Nicole's comments she suggested that I assign as.logical(df$X2) to a new data frame however, when I tried it messed my whole system up. So from this I learned that not all peer comments worked but it was a really interesting idea that I think could work in the future
+
+3. Being able to peer comment on someone else's code really helped me as well. It was intriguing to see how my classmate worked through the problems in totally different ways that I did. it gave me some ideas for future ways of manipulating data!
+
 
 ## Challenge 1
 
@@ -65,17 +92,13 @@ x
 
 ## Challenge 3
 ```{r, array challenge}
-a<- array(data = 400:1, dim= c(5,5,4,4))
-#creates array with numbers decending from 400-1 with they dimensions of 5,5,4,4
+a<- array(data = 400:1, dim= c(5,5,4,4)) #creates array with numbers decending from 400-1 with they dimensions of 5,5,4,4
 a 
-a[1,1,1,2]
-#returns data at that point in the array
+a[1,1,1,2] #returns data at that point in the array
 a
-a[2,3,2,]
-#returns row
+a[2,3,2,] #returns row
 a
-a[1:5,1:5,3,3]
-#returns columns/rows 1-5 of the array 3,3
+a[1:5,1:5,3,3] #returns columns/rows 1-5 of the array 3,3
 a
 ```
 
@@ -107,8 +130,7 @@ Primates
 
 ## Challenge 5:
 ```{r, matrix manipulation }
-d1<- c(3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2) 
-#data for matrix
+d1<- c(3, 0, 1 ,23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2) #data for matrix
 m3<- matrix(d1, nrow=5, ncol=3, byrow=TRUE) #creates matrix with 5 rows/3 colums using d1 as data
 m3
 df<- data.frame(m3) #converts matrix into data frame do it can be manipulated differently
@@ -119,8 +141,3 @@ as.factor(df$X3) #makes column 3 factor valued
 str(df) #reviews the structure of the data frame, I am able to see how the second column is not logical values using 0 and 1(for false and true of course) and column 3 is assigned levels(factor values)
 ```
 
-## Peer Commentary
-- The first thing I noticed is that in Challenge 2, I immediately noticed that  you put the rows and columns you were subsetting into a vector with c() and that made it so efficient.
-- I would just add to challenge 2 the third part which is "Given the matrix, m, extract the elements from row 2, column 2 to row 6, column 9 and assign them to the variable x".
--In Challenge 5 your use of df$X2 and df$X3 to extract the 2nd and 3rd column to change their class was really great. I used [] notation to subset and it felt really clunky. If you want to save those changes to the data frame so the class of the column changed permanently, you can try df <- as.logical(df$X2).
--I also appreciate your use of hash comments in your code - it made it super easy for me to locate what you were doing and why.
